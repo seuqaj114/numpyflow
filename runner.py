@@ -46,6 +46,8 @@ class Session:
         for op in self.operations:
             op.reset_value()
 
+        self.operations = []
+
         return returns
 
     def recurse(self, node):
