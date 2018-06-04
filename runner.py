@@ -1,21 +1,20 @@
 import numpy as np
-from numpyflow.ops import matmul, transpose, Variable, Constant, Placeholder
-from numpyflow.graph import Graph
+import numpyflow as nf
 
 # Test run 
-Graph().as_default()
+nf.Graph().as_default()
 
-x = Placeholder("x", shape=(2,3))
-a = Variable("a", (2,3), 1.0)
-b = Variable("b", (2,3), 2.0)
+x = nf.Placeholder("x", shape=(2,3))
+a = nf.Variable("a", (2,3), 1.0)
+b = nf.Variable("b", (2,3), 2.0)
 
-c = a + b + Constant(1)
+c = a + b + nf.Constant(1)
 d = c + b + x
-e = matmul(a, transpose(x))
+e = nf.matmul(a, nf.transpose(x))
 
-print(_default_graph.operations)
-print(_default_graph.variables)
-sess = Session()
+print(nf.graph._default_graph.operations)
+print(nf.graph._default_graph.variables)
+sess = nf.Session()
 
 # Fetch result of c
 print(sess.run(c))
